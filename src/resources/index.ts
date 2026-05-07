@@ -1,4 +1,4 @@
-import { databases, logger, server } from 'harperdb';
+import { databases, logger, server } from 'harper';
 import { GetHints } from './hints.js';
 import { type SiteImages } from '../types/graphql.js';
 import seedData from '../../data/seedData.json' with { type: 'json' };

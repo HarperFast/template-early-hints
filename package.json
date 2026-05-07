@@ -11,10 +11,10 @@
 	"scripts": {
 		"generate:types": "graphql-codegen --config src/codegen.ts",
 		"build": "tsc",
-		"dev": "tsc; harperdb dev .",
-		"start": "tsc; harperdb run .",
+		"dev": "tsc; harper dev .",
+		"start": "tsc; harper run .",
 		"format": "prettier --write .",
-		"postinstall": "npm link harperdb"
+		"postinstall": "npm link harper"
 	},
 	"prettier": "@harperdb/code-guidelines/prettier",
 	"dependencies": {

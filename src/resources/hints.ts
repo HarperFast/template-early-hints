@@ -1,4 +1,4 @@
-import { Resource, databases, logger } from 'harperdb';
+import { Resource, databases, logger } from 'harper';
 import type { User } from '../types/index.js';
 
 const { SiteImages: SiteImagesTable } = databases.EarlyHints;
