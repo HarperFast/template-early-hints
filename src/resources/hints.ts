@@ -1,5 +1,4 @@
 import { Resource, databases, logger } from 'harper';
-import type { User } from '../types/index.js';
 
 const { SiteImages: SiteImagesTable } = databases.EarlyHints;
 
@@ -52,18 +51,19 @@ const getSafariPreconnects = (hints: string[]): string => {
 	return Array.from(preconnectHints.values()).join(',');
 };
 
+// @ts-ignore - Harper v5 static get incompatible with base class property type declaration
 export class GetHints extends Resource {
-	allowRead(user: User): boolean {
+	allowRead(user: any): boolean {
 		return ['super_user', 'read_only_user'].includes(user?.role?.id);
 	}
 
-	async get(query: Map<string, string>): Promise<object> {
-		// const deviceType = query.get('d') || 'desktop';
-		const queryUrl = query.get('q');
+	static async get(target: any, context: any): Promise<object> {
+		// const deviceType = target.get('d') || 'desktop';
+		const queryUrl = target.get('q');
 		const url = queryUrl ? decodeURIComponent(queryUrl) : null;
 
-		const hintsVersion = query.get('v') ? parseInt(query.get('v') as string, 10) : 1;
-		const isSafari = query.get('s') === '1';
+		const hintsVersion = target.get('v') ? parseInt(target.get('v') as string, 10) : 1;
+		const isSafari = target.get('s') === '1';
 
 		// Device width can be used for selecting different images based on size
 		// const deviceWidth = query.get('w') ? parseInt(query.get('w') as string, 10) : 0;
